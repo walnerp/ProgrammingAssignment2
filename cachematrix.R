@@ -1,15 +1,34 @@
-## Put comments here that give an overall description of what your
-## functions do
-
-## Write a short comment describing this function
-
-makeCacheMatrix <- function(x = matrix()) {
-
+makeCacheMatrix <- function(mt = matrix()){   
+  mtx <- mt
+  
+  if (!bsolve){
+    mtxSC <<- matrix()
+    mtxac <<- matrix()
+  }
+  
+  return(mtx)
 }
 
+## Return a matrix that is the inverse of 'mta'
 
-## Write a short comment describing this function
 
-cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+  
+cacheSolve <- function(mta = matrix() ) {
+    mt <-mta
+    ## if the inverse of matrix not exist and the original matrix and actual are identical
+    ## return de inverse matrix in cache
+    
+    if(!is.na(mtxSC) && identical(mt,mtxac)) {
+      
+      message("getting cached inverse matrix")
+      
+      return(mtxSC)
+    }
+    else {
+      mtxSC <<-solve(mt)
+      mtxac <<- mt
+      bsolve <<- T
+    }
+    
 }
+
